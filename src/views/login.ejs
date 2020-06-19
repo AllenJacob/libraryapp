@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm">
+      <ul class="nav navbar-nav">
+        <%for(i=0;i<nav.length;i++){%>
+        <li>
+          <a href="<%=nav[i].link%>"><%=nav[i].name%></a>
+        </li>
+        <%}%>
+      </ul>
+      </nav>
+      <div class="header">
+        <p>Login</p>          
+    </div>
+    <div class="container">
+        <div class="col-md-4">
+            <form action="" >
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" class="form-control" placeholder="Enter email" id="email" onkeyup="validate()">
+                  <label for="error" id="error"></label>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" placeholder="Enter password" id="pwd" oninput="ontype()">
+                  <label for="error1" id="error1"></label>
+                  <label for="error2" id="error2" oninput="return check()"></label>
+                </div>
+                <br>
+                <div class="form-group form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> Remember me
+                  </label>
+                </div>
+                <button onclick="check()">LOGIN</button>
+              </form>  
+          </div>
+    </div>
+    <div id="footer">
+        <p id="follow">Follow Us</p> 
+        <div class="foot">
+            <button id="twitter">Twitter</button>
+            <button id="fb">Facebook</button>
+            <button id="google">Google+</button>
+        </div>
+     </div>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+     <script src="/js/bootstrap.min.js"></script>
+     <script src="/js/login.js"></script>
+     
+</body>
+</html>

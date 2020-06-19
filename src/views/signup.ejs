@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm">
+      <ul class="nav navbar-nav">
+        <%for(i=0;i<nav.length;i++){%>
+        <li>
+          <a href="<%=nav[i].link%>"><%=nav[i].name%></a>
+        </li>
+        <%}%>
+      </ul>
+      </nav>
+      <div class="header">
+        <p>Signup</p>          
+    </div>
+    <div class="container" >
+        <div class="col-md-4">
+          <form action=""   >
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" placeholder="Enter Name" id="name" required>
+                
+              </div> 
+            <div class="form-group">
+                <label for="number">Phone Number:</label>
+                <input type="number" class="form-control" placeholder="Enter Mobile Number" id="pno" required onkeyup="numbercheck()">
+                <label for="error3" id="error3" oninput="return numbercheck()"></label>
+              </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" placeholder="Enter email" id="email" required >
+                <label for="error" id="error"></label>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="pwd" required onkeyup="ontype()">
+                <label for="error1" id="error1"></label>
+                <label for="error2" id="error2" oninput="return check()"></label>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="pwd1" required onkeyup="check2()">
+                <label for="error4" id="error4" oninput="return check2()"></label>
+              </div>
+              <div class="form-group">
+                  <label for="dob">DOB:</label>
+                  <input type="date" required>
+              </div>
+              <div class="form-group" style="display: flex;">
+                  <label for="gender">Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" style="margin-left: 15px;margin-top: 5px;">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" style="margin-left: 15px;margin-top: 5px;">
+                <label for="female">Female</label>
+                
+                
+
+              </div>
+              <button onclick="check()">SIGNUP</button>
+            </form>  
+        </div>
+    </div>
+    <div id="footer">
+       <p id="follow">Follow Us</p> 
+       <div class="foot">
+           <button id="twitter">Twitter</button>
+           <button id="fb">Facebook</button>
+           <button id="google">Google+</button>
+       </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/signup.js"></script>
+</body>
+</html>
