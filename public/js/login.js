@@ -6,52 +6,56 @@
     var reg1 = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,15}$/
     
 
-function validate()
+
+    function validate()
 {
     
-    
+   
 let email = document.getElementById("email").value;
 let pwd = document.getElementById("pwd").value;
 let error = document.getElementById("error");
 let error1 = document.getElementById("error1");
-let error2 = document.getElementById("error2");
 
 
-console.log(email);
 
-    
-    if(reg.test(email)&&reg1.test(pwd)){
-        error.innerHTML = "Valid";
-        error1.innerHTML = "Valid pwd";
-        error.style.color = "blue";
-        error1.style.color = "blue";
-        return true
-        ontype();
-         
-    }
-
-        
-    else  if(reg.test(email.value)) {
-        error.innerHTML = "Valid Email";
-        error.style.color = "blue";
+   
+    if(reg.test(email)&&reg1.test(pwd))
+    {
+        error.innerHTML="valid email";
+        error.style.color="blue";
+        error1.innerHTML="valid password";
+        error1.style.color="blue";
         return true;
         
     }
-    else {
-        error.innerHTML = "Invalid Email";
-        error.style.color = "red";
+    else if(reg.test!=(email)&&reg1.test(pwd)){
+        error.innerHTML="invalid email";
+        error.style.color="red";
+        error1.innerHTML="valid password";
+        error1.style.color="blue";
+        return false;    
+
+    }
+     else if(reg.test(email)&&reg1.test!=(pwd)){
+        error1.innerHTML="invalid pwd";
+        error1.style.color="red";
+        error.innerHTML="valid email";
+        error.style.color="blue";
         return false;
     }
-    // else {
-    //     error1.innerHTML = "Invalid pwd";
-    //     error.style.color = "red";
-    // }
-
+    else{
+        error.innerHTML="invalid email";
+        error.style.color="red";
+        error1.innerHTML="invalid pwd";
+        error1.style.color="red";
+        return false;
+    }
+  
    
+   }
+   
+   function check(){
     
-    
-}
-function ontype(){
     if(pwd.value.length<8) {
         error1.innerHTML = "Invalid Pwd";
         error1.style.color = "red";
@@ -63,7 +67,7 @@ function ontype(){
     }
     else if(pwd.value.length==11||pwd.value.length<=13){
         error1.innerHTML = "medium";
-        error1.style.color="orange";
+        error1.style.color="skyblue";
     }
     else {
         error1.innerHTML = "strong";
@@ -71,15 +75,5 @@ function ontype(){
     }
     
 }
-function check(){
-    if(reg1.test!=(pwd.value)){
-       error2.innerHTML = "Password must contain an uppercase,a lowercase,a digit,special character!!.";
-       error2.style.color = "red";
-       return false;
-    }
-    else{
-        error2.innerHTML = "Password is ok.";
-        error2.style.color = "blue";
-        return true;
-    }
-}
+
+

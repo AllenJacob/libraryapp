@@ -1,42 +1,75 @@
 const express = require('express');
 const booksRouter = express.Router();
+const Bookdata = require('../model/Bookdata');
 function router(nav) {
-    var books = [
-        {
-            title:'2 States',
-            author:'Chetan Bhagat',
-            genre:'Novel',
-            img:"2states.jpg"
-        },
-        {
-            title:'3 Musketeers',
-            author:'Alexandre Dumas',
-            genre:'Novel',
-            img:"3musketeers.jpg"
-        },
-        {
-            title:'Sherlock Holmes',
-            author:'Arthur Conan Doyle',
-            genre:'Detective Novel',
-            img:"sherlock.jpg"
-        }
-    ]
+   
+    
     booksRouter.get('/',function(req,res){
-        res.render("books",
-        {
-          nav,
-          title:'Books',
-          books  
-        });
+        Bookdata.find()
+        .then(function(books){
+            res.render("books",
+            {
+              nav,
+              title:'Books',
+              books  
+            });
+        })
+       
     });
-    booksRouter.get('/:i',function(req,res){
-        const i = req.params.i
-        res.render('book',{
-            nav,
-            title:'Book',
-            book : books[i]
-        });
+    booksRouter.get('/:id',function(req,res){
+        const id = req.params.id;
+        Bookdata.findOne({_id:id})
+        .then(function(book){
+            res.render('book',{
+                nav,
+                title:'Book',
+                book 
+            });
+        })
+        
     });
+    booksRouter.get('/delete/:id',function(req,res){
+        const id = req.params.id;
+        Bookdata.deleteOne({_id:id},function(err,result){
+                if(result){
+
+                }
+        });
+        res.redirect('/books');
+        
+    })
+    booksRouter.get('/edit/:id',function(req,res){
+       Bookdata.find({_id:req.params.id},(err,result)=>{
+           if(err) throw err;
+           else{
+            res.render('editbook',{
+                nav,
+                title:'Edit Book',
+                books:result
+            });
+           }
+       }) 
+        
+       })
+       booksRouter.post('/editbook',function(req,res){
+           var id = req.body.id;
+           var title = req.body.title;
+           var author = req.body.author;
+           var genre = req.body.genre;
+           var image = req.body.image;
+           Bookdata.update({_id:id},{$set:{title:title,author:author,genre:genre,image:image}},(err,result)=>{
+               if(err) throw err;
+               else
+               {
+                           res.redirect('/books');
+                       
+                   
+               }
+           })
+       })
+
+    
+
 
     return booksRouter;
     
