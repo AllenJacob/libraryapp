@@ -90,11 +90,11 @@
           
           
           <!--/stories-->
-          <form action="./books" onsubmit="return validate()">
+          <form method="POST" action="/login/check">
           <div class="new">
-            <input type="email" placeholder="Email" required id="email"><br>
+            <input type="email" placeholder="Email" required id="email" name="email"><br>
             <p id="error"></p>
-            <input type="password" placeholder="Password" required id="pwd" onkeyup="check()"><br>
+            <input type="password" placeholder="Password" required id="pwd" name="password"><br>
             <p id="error1"></p><br>
             <p id="error2">*Password must contain an uppercase,a lowercase,a digit,and a special character</p>
             <button class="btn btn-primary" type="submit" >LOGIN</button>

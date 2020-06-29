@@ -11,11 +11,11 @@ function router(nav){
         });
     });
 
-    signuprouter.get('/login',function(req,res){
+    signuprouter.post('/login',function(req,res){
         var item ={
-             email:req.query.email,
-             mobile:req.query.mobile,
-             password:req.query.password
+             email:req.body.email,
+             mobile:req.body.mobile,
+             password:req.body.password
         }
         var signup = new Signupdata(item);
         console.log(item);

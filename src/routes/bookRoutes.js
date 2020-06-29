@@ -39,16 +39,15 @@ function router(nav) {
         
     })
     booksRouter.get('/edit/:id',function(req,res){
-       Bookdata.find({_id:req.params.id},(err,result)=>{
-           if(err) throw err;
-           else{
-            res.render('editbook',{
+        const id = req.params.id;
+        Bookdata.findOne({_id:id})
+        .then(function(book){
+            res.render("editbook",{
                 nav,
-                title:'Edit Book',
-                books:result
-            });
-           }
-       }) 
+                title:'Editbook',
+                book
+            })
+        }) 
         
        })
        booksRouter.post('/editbook',function(req,res){
@@ -56,8 +55,8 @@ function router(nav) {
            var title = req.body.title;
            var author = req.body.author;
            var genre = req.body.genre;
-           var image = req.body.image;
-           Bookdata.update({_id:id},{$set:{title:title,author:author,genre:genre,image:image}},(err,result)=>{
+           
+           Bookdata.updateOne({_id:id},{$set:{title:title,author:author,genre:genre}},(err,result)=>{
                if(err) throw err;
                else
                {
